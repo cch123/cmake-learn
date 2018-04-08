@@ -3,7 +3,7 @@ project (Hello)
 
 # 注意 option 必须在 configure_file 前面
 # 因为 configure_file 中的配置转换依赖于 option 的判断
-option (USE_MyMATH "use my lib as library" ON)
+option (USE_MyMATH "use my lib as library" OFF)
 
 # 可以做一些平台相关的文件生成、配置替换
 configure_file (
@@ -16,7 +16,8 @@ include_directories("${PROJECT_BINARY_DIR}")
 if (USE_MyMATH)
     include_directories("${PROJECT_SOURCE_DIR}/MathFunctions")
     add_subdirectory(MathFunctions)
+    set(EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)
 endif (USE_MyMATH)
 
 add_executable(Hello hello.c)
-target_link_libraries(Hello MathFunctions)
+target_link_libraries(Hello ${EXTRA_LIBS})
