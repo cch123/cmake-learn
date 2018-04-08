@@ -3,6 +3,7 @@ project (Hello)
 
 # 注意 option 必须在 configure_file 前面
 # 因为 configure_file 中的配置转换依赖于 option 的判断
+# 用 ccmake 才能触发选项的 GUI 操作
 option (USE_MyMATH "use my lib as library" OFF)
 
 # 可以做一些平台相关的文件生成、配置替换
